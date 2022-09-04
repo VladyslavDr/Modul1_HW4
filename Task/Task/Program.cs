@@ -30,14 +30,34 @@ namespace Task
         public static char[] GetArrayLetters(int[] arrayNambers)
         {
             var alphabet = "abcdefghijklmnopqrstuvwxyz";
+            var letters = "aeidhj";
+
             var arrayLetters = new char[arrayNambers.Length];
 
             for (int index = 0; index < arrayNambers.Length; index++)
             {
                 arrayLetters[index] = alphabet[arrayNambers[index] - 1];
+
+                if (IsThisLetterOnTheList(arrayLetters[index], letters))
+                {
+                    arrayLetters[index] = char.ToUpper(arrayLetters[index]);
+                }
             }
 
             return arrayLetters;
+        }
+
+        public static bool IsThisLetterOnTheList(char l, string letters)
+        {
+            foreach (var letter in letters)
+            {
+                if (l.Equals(letter))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         public static void SplitAtOddAndEven(int[] array, out int[] arrayOfEvenNumbers, out int[] arrayOfOddNumbers)
