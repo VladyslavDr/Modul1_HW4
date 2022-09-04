@@ -6,6 +6,8 @@ namespace Task
     {
         public static void Main(string[] args)
         {
+            Console.Write("Enter array size: ");
+
             var res = int.TryParse(Console.ReadLine(), out var size);
 
             if (res is true && size > 0)
@@ -43,7 +45,7 @@ namespace Task
             }
             else
             {
-                Console.WriteLine("Error! The size of the array must be N{0}!");
+                Console.WriteLine("Error! The size of the array must be of positive numbers!");
             }
         }
 
@@ -84,10 +86,7 @@ namespace Task
 
         public static void SplitAtOddAndEven(int[] array, out int[] arrayOfEvenNumbers, out int[] arrayOfOddNumbers)
         {
-            int numberEvenElements;
-            int numberOddElements;
-
-            GetNumberOfEvenAndOddElements(array, out numberEvenElements, out numberOddElements);
+            GetNumberOfEvenAndOddElements(array, out var numberEvenElements, out var numberOddElements);
 
             arrayOfEvenNumbers = new int[numberEvenElements];
             arrayOfOddNumbers = new int[numberOddElements];
