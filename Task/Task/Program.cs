@@ -6,43 +6,44 @@ namespace Task
     {
         public static void Main(string[] args)
         {
-            _ = int.TryParse(Console.ReadLine(), out var size);
+            var res = int.TryParse(Console.ReadLine(), out var size);
 
-            var array = GetArrayWithRandomElements(new int[size]);
-
-            Console.WriteLine("your array: ");
-            ShowArray(array);
-
-            int[] arrayOfEvenNumbers;
-            int[] arrayOfOddNumbers;
-
-            SplitAtOddAndEven(array, out arrayOfEvenNumbers, out arrayOfOddNumbers);
-
-            Console.WriteLine("array of even numbers:");
-            ShowArray(arrayOfEvenNumbers);
-            Console.WriteLine("array of odd numbers:");
-            ShowArray(arrayOfOddNumbers);
-
-            int numberUpperCaseLetterInStringEven;
-            int numberUpperCaseLetterInStringOdd;
-
-            var stringEven = string.Join(" ", GetArrayLetters(arrayOfEvenNumbers, out numberUpperCaseLetterInStringEven));
-            var stringOdd = string.Join(" ", GetArrayLetters(arrayOfOddNumbers, out numberUpperCaseLetterInStringOdd));
-
-            Console.WriteLine($"string even: {stringEven}");
-            Console.WriteLine($"string odd: {stringOdd}");
-
-            if (numberUpperCaseLetterInStringEven > numberUpperCaseLetterInStringOdd)
+            if (res is true && size > 0)
             {
-                Console.WriteLine("there are more uppercase letters in the even array");
-            }
-            else if (numberUpperCaseLetterInStringEven < numberUpperCaseLetterInStringOdd)
-            {
-                Console.WriteLine("there are more uppercase letters in the odd array");
+                var array = GetArrayWithRandomElements(new int[size]);
+
+                Console.WriteLine("your array: ");
+                ShowArray(array);
+
+                SplitAtOddAndEven(array, out var arrayOfEvenNumbers, out var arrayOfOddNumbers);
+
+                Console.WriteLine("array of even numbers:");
+                ShowArray(arrayOfEvenNumbers);
+                Console.WriteLine("array of odd numbers:");
+                ShowArray(arrayOfOddNumbers);
+
+                var stringEven = string.Join(" ", GetArrayLetters(arrayOfEvenNumbers, out var numberUpperCaseLetterInStringEven));
+                var stringOdd = string.Join(" ", GetArrayLetters(arrayOfOddNumbers, out var numberUpperCaseLetterInStringOdd));
+
+                Console.WriteLine($"string even: {stringEven}");
+                Console.WriteLine($"string odd: {stringOdd}");
+
+                if (numberUpperCaseLetterInStringEven > numberUpperCaseLetterInStringOdd)
+                {
+                    Console.WriteLine("there are more uppercase letters in the even array");
+                }
+                else if (numberUpperCaseLetterInStringEven < numberUpperCaseLetterInStringOdd)
+                {
+                    Console.WriteLine("there are more uppercase letters in the odd array");
+                }
+                else
+                {
+                    Console.WriteLine("both arrays have the same number of capital letters");
+                }
             }
             else
             {
-                Console.WriteLine("both arrays have the same number of capital letters");
+                Console.WriteLine("Error! The size of the array must be N{0}!");
             }
         }
 
