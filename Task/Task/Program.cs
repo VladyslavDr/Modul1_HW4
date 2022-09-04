@@ -10,6 +10,7 @@ namespace Task
 
             var array = GetArrayWithRandomElements(new int[size]);
 
+            Console.WriteLine("your array: ");
             ShowArray(array);
 
             int[] arrayOfEvenNumbers;
@@ -17,20 +18,39 @@ namespace Task
 
             SplitAtOddAndEven(array, out arrayOfEvenNumbers, out arrayOfOddNumbers);
 
+            Console.WriteLine("array of even numbers:");
             ShowArray(arrayOfEvenNumbers);
+            Console.WriteLine("array of odd numbers:");
             ShowArray(arrayOfOddNumbers);
 
-            var stringEven = new string(GetArrayLetters(arrayOfEvenNumbers));
-            var stringOdd = new string(GetArrayLetters(arrayOfOddNumbers));
+            int numberUpperCaseLetterInStringEven;
+            int numberUpperCaseLetterInStringOdd;
 
-            Console.WriteLine(stringEven);
-            Console.WriteLine(stringOdd);
+            var stringEven = string.Join(" ", GetArrayLetters(arrayOfEvenNumbers, out numberUpperCaseLetterInStringEven));
+            var stringOdd = string.Join(" ", GetArrayLetters(arrayOfOddNumbers, out numberUpperCaseLetterInStringOdd));
+
+            Console.WriteLine($"string even: {stringEven}");
+            Console.WriteLine($"string odd: {stringOdd}");
+
+            if (numberUpperCaseLetterInStringEven > numberUpperCaseLetterInStringOdd)
+            {
+                Console.WriteLine("there are more uppercase letters in the even array");
+            }
+            else if (numberUpperCaseLetterInStringEven < numberUpperCaseLetterInStringOdd)
+            {
+                Console.WriteLine("there are more uppercase letters in the odd array");
+            }
+            else
+            {
+                Console.WriteLine("both arrays have the same number of capital letters");
+            }
         }
 
-        public static char[] GetArrayLetters(int[] arrayNambers)
+        public static char[] GetArrayLetters(int[] arrayNambers, out int counter)
         {
             var alphabet = "abcdefghijklmnopqrstuvwxyz";
             var letters = "aeidhj";
+            counter = 0;
 
             var arrayLetters = new char[arrayNambers.Length];
 
@@ -41,6 +61,7 @@ namespace Task
                 if (IsThisLetterOnTheList(arrayLetters[index], letters))
                 {
                     arrayLetters[index] = char.ToUpper(arrayLetters[index]);
+                    counter++;
                 }
             }
 
