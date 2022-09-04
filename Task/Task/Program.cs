@@ -19,6 +19,25 @@ namespace Task
 
             ShowArray(arrayOfEvenNumbers);
             ShowArray(arrayOfOddNumbers);
+
+            var stringEven = new string(GetArrayLetters(arrayOfEvenNumbers));
+            var stringOdd = new string(GetArrayLetters(arrayOfOddNumbers));
+
+            Console.WriteLine(stringEven);
+            Console.WriteLine(stringOdd);
+        }
+
+        public static char[] GetArrayLetters(int[] arrayNambers)
+        {
+            var alphabet = "abcdefghijklmnopqrstuvwxyz";
+            var arrayLetters = new char[arrayNambers.Length];
+
+            for (int index = 0; index < arrayNambers.Length; index++)
+            {
+                arrayLetters[index] = alphabet[arrayNambers[index] - 1];
+            }
+
+            return arrayLetters;
         }
 
         public static void SplitAtOddAndEven(int[] array, out int[] arrayOfEvenNumbers, out int[] arrayOfOddNumbers)
